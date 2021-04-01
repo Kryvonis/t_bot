@@ -1,0 +1,9 @@
+# Folders
+/node_modules
+.next
+./DS_Store
+.vscode
+dist/
+
+# Files
+package-lock.json

@@ -1,0 +1,18 @@
+{
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.modtest.ts",
+    "**/*.spec.ts",
+    ".git",
+    "build",
+    "node_modules",
+    "**/openapi/static/**",
+    "**/build/**"
+  ],
+  "watch": [
+    "src",
+    "../libraries"
+  ],
+  "exec": "npm run tsc && node dist/index.js --env development",
+  "ext": "ts"
+}
