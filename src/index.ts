@@ -1,6 +1,7 @@
 /* eslint-disable prefer-arrow-callback */
 import TelegramBot from 'node-telegram-bot-api';
-
+import express from 'express';
+import cors from 'cors';
 // /**
 //  * This example demonstrates setting up webhook
 //  * on the Heroku platform.
@@ -51,4 +52,16 @@ bot.on('message', (msg:any) => {
 
   // send a message to the chat acknowledging receipt of their message
   bot.sendMessage(chatId, 'Received your message');
+});
+
+const app = express();
+const PORT = parseInt(process.env.PORT, 10) || 3001;
+app.use(cors());
+app.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next(res);
+});
+app.listen(PORT, () => {
+  console.log('Server ready on PORT:', PORT);
 });
