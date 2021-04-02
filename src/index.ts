@@ -2,35 +2,11 @@
 import TelegramBot from 'node-telegram-bot-api';
 import express from 'express';
 import cors from 'cors';
-// /**
-//  * This example demonstrates setting up webhook
-//  * on the Heroku platform.
-//  */
-// const TOKEN = process.env.TELEGRAM_TOKEN || '551431067:AAHcuQ2u0RFykDYgHYRz9huelryCsHTx9to';
-// const options = {
-//   webHook: {
-//     port: process.env.PORT || 3000,
-//   },
-// };
-// const url = process.env.APP_URL || 'https://tbotpiddor.herokuapp.com:443';
-// const bot = new TelegramBot(TOKEN, options as any);
 
-// // This informs the Telegram servers of the new webhook.
-// // Note: we do not need to pass in the cert, as it already provided
-// bot.setWebHook(`${url}/bot${TOKEN}`);
-
-// // Just to ping!
-// bot.on('message', function onMessage(msg:any) {
-//   bot.sendMessage(msg.chat.id, 'I am alive on Heroku!');
-// });
-
-// const TelegramBot = require('node-telegram-bot-api');
-
-// replace the value below with the Telegram token you receive from @BotFather
 const token = '551431067:AAHcuQ2u0RFykDYgHYRz9huelryCsHTx9to';
 
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { polling: true });
 
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
@@ -51,17 +27,12 @@ bot.on('message', (msg:any) => {
   const chatId = msg.chat.id;
 
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
+  bot.sendMessage(chatId, 'Тихо тихо, пока я ещё не работаю. Всё ещё будет :)');
 });
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 3001;
 app.use(cors());
-app.all('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next(res);
-});
 app.listen(PORT, () => {
   console.log('Server ready on PORT:', PORT);
 });
