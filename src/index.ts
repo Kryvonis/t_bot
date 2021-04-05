@@ -32,7 +32,7 @@ bot.on('message', (msg:any) => {
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 3001;
-app.use(cors());
+app.get('/', (req: any, res: any) => res.json([{ data: 'Example Message CORS' }]));
 app.listen(PORT, () => {
   console.log('Server ready on PORT:', PORT);
 });
